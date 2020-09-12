@@ -58,6 +58,7 @@ public class Connection {
     public String getStatusReply() {
         byte[] b = new byte[1024];
         try {
+            // 将socket中input流的数据读取并返回给客户端
             socket.getInputStream().read(b);
         } catch (IOException e) {
             e.printStackTrace();

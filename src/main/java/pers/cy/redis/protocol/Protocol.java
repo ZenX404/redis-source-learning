@@ -23,11 +23,17 @@ public class Protocol {
 
     // 将客户端传过来的数据处理成redis认识的数据，并将其发送
     public static void sendCommand(OutputStream outputStream, Command command, byte[]... bytes) {
+        // 按照规范好的协议将客户端传进来的数据进行处理
+
         StringBuffer stringBuffer = new StringBuffer();
+        // 先判断传进来有多少个数据  用*
         stringBuffer.append(ASTERISK_BYTE).append(bytes.length + 1).append(BLANK_BYTE);
+        // 再单独判断一下命令市set还是get 用&
         stringBuffer.append(DOLLAR_BYTE).append(command.name().length()).append(BLANK_BYTE);
+        // 添加上传入的命令字符串
         stringBuffer.append(command).append(BLANK_BYTE);
 
+        // 循环处理传入的key value
         for (byte[] arg : bytes) {
             stringBuffer.append(DOLLAR_BYTE).append(arg.length).append(BLANK_BYTE);
             stringBuffer.append(new String(arg)).append(BLANK_BYTE);
@@ -35,6 +41,7 @@ public class Protocol {
         }
 
         try {
+            // 将处理好的数据转换成byte然后写入到output流中，传给redis
             outputStream.write(stringBuffer.toString().getBytes());
         } catch (IOException e) {
             e.printStackTrace();

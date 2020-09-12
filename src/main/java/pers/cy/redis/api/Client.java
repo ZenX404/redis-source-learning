@@ -11,6 +11,11 @@ public class Client {
     // 客户端使用传输层与redis服务器进行连接
     private Connection connection;
 
+    /**
+     * 创建连接层对象
+     * @param host
+     * @param port
+     */
     public Client(String host, int port) {
         connection = new Connection(host, port);
     }
