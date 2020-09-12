@@ -51,6 +51,10 @@ public class Connection {
     }
 
 
+    /**
+     * 将redis服务器返回得数据传回给客户端
+     * @return
+     */
     public String getStatusReply() {
         byte[] b = new byte[1024];
         try {

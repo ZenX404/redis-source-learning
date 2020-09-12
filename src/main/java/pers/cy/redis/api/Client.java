@@ -26,6 +26,11 @@ public class Client {
         return "ok";
     }
 
+    /**
+     * get操作
+     * @param key
+     * @return
+     */
     public String get(final String key) {
         connection.sendCommand(Protocol.Command.SET, SafeEncode.encode(key));
         return connection.getStatusReply();

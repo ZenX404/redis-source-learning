@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
+ *  消息协议层   将客户端传进来的数据转换成redis服务器认识的形式
+ *
  *  *3 数组3
  *  $3 字符串3  cyh
  *  $6 字符串6  cytuhd
