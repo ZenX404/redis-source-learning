@@ -46,7 +46,7 @@ public class Connection {
         connect();
 
         // 通过消息协议层将客户端传过来的数据进行序列化处理，处理成为redis服务器能认出来的数据
-        Protocol.sendCommand(command, args);
+        Protocol.sendCommand(outputStream, command, args);
         return this;
     }
 
